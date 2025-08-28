@@ -1,7 +1,7 @@
-final static float MOVE_SPEED = 5;
+final static float MOVE_SPEED = 1;
 final static float SPRITE_SCALE = 50.0/128;
 final static float SPRITE_SIZE = 50;
-final static float GRAVITY = 0.6;
+final static float GRAVITY = 0.1;
 final static float JUMP_SPEED = 15;
 final static float RIGHT_MARGIN = 400;
 final static float LEFT_MARGIN = 60;
@@ -22,16 +22,20 @@ the names of the variables, the values
 to give them, expressions, and the data types for each.
 
 Declare  an int named score, a boolean named isGameOver and 2 floats named view_x and view_y */
-
-
+int score;
+boolean isGameOver;
+float view_x;
+float view_y;
+//doone
 /* -------------------------- */
 
 /* Section 2 part 2: Declare 2 string variables to be used later. 
 
 Declare a string named coinPhrase and livePhrase
 */
-
-
+String coinPhrase;
+String livePhrase;
+//doone
 /*-----------------------*/
 Player player;
 PImage rock_block, sand_block, marble_block, stone_block, grass_block, dirt_block, gold, spider, p, flame;
@@ -51,8 +55,8 @@ void setup() {
   
   Call the constructor Player(p,SPRITE_SCALE) with those parameters. It should be set equal to the player variable
   */
- 
- 
+player = new Player(p,SPRITE_SCALE);
+ //done
  
   /*----------------------*/
   player.change_x = 0;
@@ -179,16 +183,16 @@ void keyPressed() {
   Fill in the If statements, one is done for you and the remaining are the other directions. They only require
   the directions in order: RIGHT, LEFT, UP, & DOWN
   */
-  if() {
+  if((keyCode == RIGHT)) {
      player.change_x = MOVE_SPEED; 
   }
-   else if() {
+   else if((keyCode == LEFT)) {
      player.change_x = -MOVE_SPEED; 
   }
    else if(keyCode == UP && isOnPlatforms(player,platforms)) {
      player.change_y = -JUMP_SPEED; 
   }
-   else if() {
+   else if((keyCode == DOWN )) {
      player.change_y = MOVE_SPEED; 
   }
   else if(isGameOver && key == ' ') {
@@ -202,13 +206,13 @@ void keyReleased() {
   /* Section 3: If statements will complete the key released function
     Fill these in same as above the order is: RIGHT, LEFT, DOWN
   */
-    if() {
+    if(keyCode==RIGHT) {
      player.change_x = 0; 
   }
-   else if() {
+   else if(keyCode==LEFT) {
      player.change_x = 0; 
   }
-   else if() {
+   else if(keyCode==DOWN) {
      player.change_y = 0; 
   }
   /*----------------------------*/
@@ -216,7 +220,7 @@ void keyReleased() {
 
 void createPlatforms(String filename) {
   /* Section 4: We will be constructing the for loops needed to create
-  the platforms 
+  she platforms 
   
   Initialize the first for loop with row starting at 0, it going while it is less than 
   lines.length, and increment row by 1
@@ -227,10 +231,11 @@ void createPlatforms(String filename) {
   */
   String[] lines = loadStrings(filename);
   /* First for loop */
-  for() {
+  for(int row=0;row < lines.length; row++){
+  
     String[] values = split(lines[row],",");
     /* Second for loop */
-    for() {
+    for(int col=0;col < values.length;col++){
       if(values[col].equals("m")) {
          Sprite s = new Sprite(marble_block,SPRITE_SCALE);
          s.center_x = SPRITE_SIZE/2 + col * SPRITE_SIZE;
